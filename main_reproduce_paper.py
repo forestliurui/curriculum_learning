@@ -6,6 +6,7 @@ Created on Thu May 30 16:53:30 2019
 @author: guy.hacohen
 """
 
+import argparse
 from argparse import Namespace
 from main_train_networks import run_expriment
 
@@ -85,11 +86,12 @@ def anti_curriculum_small_mammals(repeats, output_path=""):
     run_expriment(args)
 
 
-def random_small_mammals(repeats, output_path=""):
+def random_small_mammals(repeats, output_path="", data_path=""):
     
     args = Namespace(dataset="cifar100_subset_16",
                      model='stVGG',
                      output_path=output_path,
+                     data_path=data_path,
                      verbose=False,
                      optimizer="sgd",
                      curriculum="random",
@@ -110,10 +112,11 @@ def random_small_mammals(repeats, output_path=""):
     run_expriment(args)
 
 
-def vanilla_cifar10_st_vgg(repeats, output_path=""):
+def vanilla_cifar10_st_vgg(repeats, output_path="", data_path=""):
     args = Namespace(dataset="cifar10",
                      model='stVGG',
                      output_path=output_path,
+                     data_path=data_path,
                      verbose=True,
                      optimizer="sgd",
                      curriculum="vanilla",
@@ -132,10 +135,11 @@ def vanilla_cifar10_st_vgg(repeats, output_path=""):
                      balance=True)
     run_expriment(args)
 
-def curriculum_cifar10_st_vgg(repeats, output_path=""):
+def curriculum_cifar10_st_vgg(repeats, output_path="", data_path=""):
     args = Namespace(dataset="cifar10",
                      model='stVGG',
                      output_path=output_path,
+                     data_path=data_path,
                      verbose=True,
                      optimizer="sgd",
                      curriculum="curriculum",
@@ -155,11 +159,12 @@ def curriculum_cifar10_st_vgg(repeats, output_path=""):
     
     run_expriment(args)
 
-def vanilla_cifar100_st_vgg(repeats, output_path=""):
+def vanilla_cifar100_st_vgg(repeats, output_path="", data_path=""):
     
     args = Namespace(dataset="cifar100",
                      model='stVGG',
                      output_path=output_path,
+                     data_path=data_path,
                      verbose=True,
                      optimizer="sgd",
                      curriculum="vanilla",
@@ -179,10 +184,11 @@ def vanilla_cifar100_st_vgg(repeats, output_path=""):
     
     run_expriment(args)
 
-def curriculum_cifar100_st_vgg(repeats, output_path=""):
+def curriculum_cifar100_st_vgg(repeats, output_path="", data_path=""):
     args = Namespace(dataset="cifar100",
                      model='stVGG',
                      output_path=output_path,
+                     data_path=data_path,
                      verbose=True,
                      optimizer="sgd",
                      curriculum="curriculum",
@@ -205,8 +211,17 @@ def curriculum_cifar100_st_vgg(repeats, output_path=""):
 
 if __name__ == "__main__":
     
+    parser = argparse.ArgumentParser(description="Try to reproduce the results in the paper")
+
+    parser.add_argument("--repeats", default=1, type=int, help="number of times to repeat the experiment.")
+    parser.add_argument("--datapath", type=str, default=None, help="the folder where training data can be found.")
+    parser.add_argument("--experiment", type=str, default=None, help="which experiment to run")
+
+    args = parser.parse_args()
+    print("input argument: {}".format(args))
     output_path = ""
-    num_repeats = 1
+    num_repeats = args.repeats
+    data_path = args.datapath
     
 #    import datasets.cifar100
 #    
@@ -214,10 +229,14 @@ if __name__ == "__main__":
     
     
     #case 2 & 3
-#    vanilla_cifar10_st_vgg(num_repeats, output_path=output_path)
-#    curriculum_cifar10_st_vgg(num_repeats, output_path=output_path)
-#    vanilla_cifar100_st_vgg(num_repeats, output_path=output_path)
-    curriculum_cifar100_st_vgg(num_repeats, output_path=output_path)
+    if args.experiment == "vanilla_cifar10":
+        vanilla_cifar10_st_vgg(num_repeats, output_path=output_path, data_path=data_path)
+    elif args.experiment == "curriculum_cifar10":
+        curriculum_cifar10_st_vgg(num_repeats, output_path=output_path, data_path=data_path)
+    elif args.experiment == "vanilla_cifar100":
+        vanilla_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path)
+    elif args.expriment == "curriculum_cifar100":
+        curriculum_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path)
     
     # case 1
 #    curriculum_small_mammals(num_repeats, output_path=output_path)

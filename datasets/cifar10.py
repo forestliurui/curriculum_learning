@@ -14,7 +14,7 @@ import numpy as np
     
 class Cifar10(datasets.Dataset.Dataset):
 
-    def __init__(self, smaller_data_size=None, normalize=True):
+    def __init__(self, smaller_data_size=None, normalize=True, data_path=None):
         self.name = 'cifar10'
             
         # Internet URL for the tar-file with the Inception model.
@@ -23,6 +23,8 @@ class Cifar10(datasets.Dataset.Dataset):
 
         # Directory to store the downloaded data.
         self.data_dir = "./data/cifar10/"
+        print("set data path for cifar10: {}".format(data_path))
+        self.data_path = data_path
 
         self.height, self.width, self.depth = 32, 32, 3
         self.n_classes = 10
@@ -69,7 +71,7 @@ class Cifar10(datasets.Dataset.Dataset):
         in data_path (set this variable first to the desired path).
         """
 
-        download.maybe_download_and_extract(url=self.data_url, download_dir=self.data_dir)
+        download.maybe_download_and_extract(url=self.data_url, download_dir=self.data_dir, data_path=self.data_path)
 
     def load_training_data(self):
         dirname = 'cifar-10-batches-py'

@@ -70,7 +70,7 @@ def train_model_batches(model, dataset, num_batches, batch_size=100,
             history["batch_num"].append(batch)
             if verbose:
                 print("val accuracy:", cur_val_acc)
-        if verbose and (batch+1) % 5 == 0:
+        if verbose and (batch+1) % 50 == 0:
             print("batch: " + str(batch+1) + r"/" + str(num_batches))
             print("last lr used: " + str(cur_lr))
             print("data_size: " + str(cur_x.shape[0]))

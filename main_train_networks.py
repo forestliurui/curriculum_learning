@@ -106,18 +106,18 @@ def data_function_from_input(curriculum, batch_size,
     return data_function
 
 
-def load_dataset(dataset_name):
+def load_dataset(dataset_name, data_path=None):
     
     if dataset_name.startswith('cifar100_subset'):
         superclass_idx = int(dataset_name[len("cifar100_subset_"):])
         dataset = datasets.cifar100_subset.Cifar100_Subset(supeclass_idx=superclass_idx,
-                                                  normalize=False)
+                                                  normalize=False, data_path=data_path)
     
     elif dataset_name == "cifar10":
-        dataset = datasets.cifar10.Cifar10(normalize=False)
+        dataset = datasets.cifar10.Cifar10(normalize=False, data_path=data_path)
 
     elif dataset_name == "cifar100":
-        dataset = datasets.cifar100.Cifar100(normalize=False)
+        dataset = datasets.cifar100.Cifar100(normalize=False, data_path=data_path)
         
     else:
         print("do not support datset: %s" % dataset_name)
@@ -215,7 +215,7 @@ def graph_from_history(history, plot_train=False, plot_test=True):
 #    axs.legend(loc="best")
 
 def run_expriment(args):
-    dataset = load_dataset(args.dataset)
+    dataset = load_dataset(args.dataset, data_path=args.data_path)
     model_lib = load_model()
 
     size_train = dataset.x_train.shape[0]

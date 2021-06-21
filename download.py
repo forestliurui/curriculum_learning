@@ -45,7 +45,7 @@ def _print_download_progress(count, block_size, total_size):
 ########################################################################
 
 
-def maybe_download_and_extract(url, download_dir):
+def maybe_download_and_extract(url, download_dir, data_path=None):
     """
     Download and extract the data if it doesn't already exist.
     Assumes the url is a tar-ball file.
@@ -65,7 +65,10 @@ def maybe_download_and_extract(url, download_dir):
     # Filename for saving the file downloaded from the internet.
     # Use the filename from the URL and add it to the download_dir.
     filename = url.split('/')[-1]
-    file_path = os.path.join(download_dir, filename)
+    if data_path is None:
+        file_path = os.path.join(download_dir, filename)
+    else:
+        file_path = data_path
 
     # Check if the file already exists.
     # If it exists then we assume it has also been extracted,

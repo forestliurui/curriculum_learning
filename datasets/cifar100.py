@@ -14,7 +14,7 @@ import numpy as np
 
 class Cifar100(datasets.Dataset.Dataset):
 
-    def __init__(self, normalize=True):
+    def __init__(self, normalize=True, data_path=None):
         self.name = 'cifar100'
         
         self.subsets_idxes = list(range(100))
@@ -25,6 +25,8 @@ class Cifar100(datasets.Dataset.Dataset):
 
         # Directory to store the downloaded data.
         self.data_dir = "./data/cifar100/"
+        self.data_path = data_path
+        print("set data path for cifar100: {}".format(self.data_path))
 
         self.height, self.width, self.depth = 32, 32, 3
         self.n_classes = len(self.subsets_idxes)
@@ -66,7 +68,7 @@ class Cifar100(datasets.Dataset.Dataset):
         in data_path (set this variable first to the desired path).
         """
 
-        download.maybe_download_and_extract(url=self.data_url, download_dir=self.data_dir)
+        download.maybe_download_and_extract(url=self.data_url, download_dir=self.data_dir, data_path=self.data_path)
 
     def load_training_data(self):
         dirname = 'cifar-100-python'
