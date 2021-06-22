@@ -75,7 +75,11 @@ class Cifar10(datasets.Dataset.Dataset):
 
     def load_training_data(self):
         dirname = 'cifar-10-batches-py'
-        path = os.path.join(self.data_dir, dirname)
+        if self.data_path is None:
+            path = os.path.join(self.data_dir, dirname)
+        else:
+            path = self.data_path
+
         n_train_batchs = 5
         x_train = np.zeros((0, self.depth, self.width, self.height))
         y_train = []
@@ -93,7 +97,11 @@ class Cifar10(datasets.Dataset.Dataset):
     
     def load_test_data(self):
         dirname = 'cifar-10-batches-py'
-        path = os.path.join(self.data_dir, dirname)
+        if self.data_path is None:
+            path = os.path.join(self.data_dir, dirname)
+        else:
+            path = self.data_path
+
         fpath = os.path.join(path, 'test_batch')
         x_test, y_test = self._load_batch(fpath)
 

@@ -72,7 +72,11 @@ class Cifar100(datasets.Dataset.Dataset):
 
     def load_training_data(self):
         dirname = 'cifar-100-python'
-        path = os.path.join(self.data_dir, dirname)
+        if self.data_path is None:
+            path = os.path.join(self.data_dir, dirname)
+        else:
+            path = self.data_path
+
         fpath = os.path.join(path, 'train')
         x_train, y_train_fine = self._load_batch(fpath, 'fine_labels')
         data_size = len(y_train_fine)
@@ -94,7 +98,11 @@ class Cifar100(datasets.Dataset.Dataset):
 
     def load_test_data(self):
         dirname = 'cifar-100-python'
-        path = os.path.join(self.data_dir, dirname)
+        if self.data_path is None:
+            path = os.path.join(self.data_dir, dirname)
+        else:
+            path = self.data_path
+
         fpath = os.path.join(path, 'test')
         x_test, y_test_fine = self._load_batch(fpath, 'fine_labels')
         data_size = len(y_test_fine)
