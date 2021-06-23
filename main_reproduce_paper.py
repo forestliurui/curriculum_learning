@@ -235,7 +235,7 @@ if __name__ == "__main__":
         curriculum_cifar10_st_vgg(num_repeats, output_path=output_path, data_path=data_path)
     elif args.experiment == "vanilla_cifar100":
         vanilla_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path)
-    elif args.expriment == "curriculum_cifar100":
+    elif args.experiment == "curriculum_cifar100":
         curriculum_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path)
     
     # case 1
