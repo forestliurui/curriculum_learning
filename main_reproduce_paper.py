@@ -112,9 +112,9 @@ def random_small_mammals(repeats, output_path="", data_path=""):
     run_expriment(args)
 
 
-def vanilla_cifar10_st_vgg(repeats, output_path="", data_path=""):
+def vanilla_cifar10_st_vgg(repeats, output_path="", data_path="", model="cnn"):
     args = Namespace(dataset="cifar10",
-                     model='stVGG',
+                     model=model,
                      output_path=output_path,
                      data_path=data_path,
                      verbose=True,
@@ -135,9 +135,9 @@ def vanilla_cifar10_st_vgg(repeats, output_path="", data_path=""):
                      balance=True)
     run_expriment(args)
 
-def curriculum_cifar10_st_vgg(repeats, output_path="", data_path=""):
+def curriculum_cifar10_st_vgg(repeats, output_path="", data_path="", model="cnn"):
     args = Namespace(dataset="cifar10",
-                     model='stVGG',
+                     model=model,
                      output_path=output_path,
                      data_path=data_path,
                      verbose=True,
@@ -159,10 +159,10 @@ def curriculum_cifar10_st_vgg(repeats, output_path="", data_path=""):
     
     run_expriment(args)
 
-def vanilla_cifar100_st_vgg(repeats, output_path="", data_path=""):
+def vanilla_cifar100_st_vgg(repeats, output_path="", data_path="", model="cnn"):
     
     args = Namespace(dataset="cifar100",
-                     model='stVGG',
+                     model=model,
                      output_path=output_path,
                      data_path=data_path,
                      verbose=True,
@@ -184,9 +184,9 @@ def vanilla_cifar100_st_vgg(repeats, output_path="", data_path=""):
     
     run_expriment(args)
 
-def curriculum_cifar100_st_vgg(repeats, output_path="", data_path=""):
+def curriculum_cifar100_st_vgg(repeats, output_path="", data_path="", model="cnn"):
     args = Namespace(dataset="cifar100",
-                     model='stVGG',
+                     model=model,
                      output_path=output_path,
                      data_path=data_path,
                      verbose=True,
@@ -230,14 +230,22 @@ if __name__ == "__main__":
     
     #case 2 & 3
     if args.experiment == "vanilla_cifar10":
-        vanilla_cifar10_st_vgg(num_repeats, output_path=output_path, data_path=data_path)
+        vanilla_cifar10_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='cnn')
     elif args.experiment == "curriculum_cifar10":
-        curriculum_cifar10_st_vgg(num_repeats, output_path=output_path, data_path=data_path)
+        curriculum_cifar10_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='cnn')
     elif args.experiment == "vanilla_cifar100":
-        vanilla_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path)
+        vanilla_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='cnn')
     elif args.experiment == "curriculum_cifar100":
-        curriculum_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path)
+        curriculum_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='cnn')
     
+    if args.experiment == "vanilla_cifar10_vgg":
+        vanilla_cifar10_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='vgg')
+    elif args.experiment == "curriculum_cifar10_vgg":
+        curriculum_cifar10_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='vgg')
+    elif args.experiment == "vanilla_cifar100_vgg":
+        vanilla_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='vgg')
+    elif args.experiment == "curriculum_cifar100_vgg":
+        curriculum_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='vgg')
     # case 1
 #    curriculum_small_mammals(num_repeats, output_path=output_path)
 #    vanilla_small_mammals(num_repeats, output_path=output_path)

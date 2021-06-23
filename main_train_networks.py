@@ -15,6 +15,7 @@ import datasets.cifar100_subset
 import datasets.cifar10
 import datasets.cifar100
 import models.cifar100_model
+import models.vgg_model
 import train_keras_model
 import transfer_learning
 import pickle
@@ -126,9 +127,11 @@ def load_dataset(dataset_name, data_path=None):
     return dataset
 
 
-def load_model():
-    return models.cifar100_model.Cifar100_Model()
-
+def load_model(args):
+    if args.model == "cnn":
+        return models.cifar100_model.Cifar100_Model()
+    elif args.model == "vgg":
+        return models.vgg_model.Vgg_Model()
 
 def load_order(order_name, dataset):
     classic_networks = ["vgg16", "vgg19", "inception", "xception", "resnet"]
@@ -216,7 +219,8 @@ def graph_from_history(history, plot_train=False, plot_test=True):
 
 def run_expriment(args):
     dataset = load_dataset(args.dataset, data_path=args.data_path)
-    model_lib = load_model()
+    
+    model_lib = load_model(args)
 
     size_train = dataset.x_train.shape[0]
     num_batches = (args.num_epochs * size_train) // args.batch_size
