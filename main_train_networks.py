@@ -286,11 +286,12 @@ def run_expriment(args):
     if output_path:
         with open(output_path + "_history", 'wb') as file_pi:
             pickle.dump(combined_history, file_pi)
-        
+    
+    print("combined_history: {}".format(combined_history))
     print("training acc:", combined_history['acc'][-1])
     print("test acc:", combined_history['val_acc'][-1])
     
-    graph_from_history(combined_history, plot_train=False, plot_test=True)
+    #graph_from_history(combined_history, plot_train=False, plot_test=True)
     
 
 if __name__ == "__main__":
