@@ -50,9 +50,9 @@ class SVgg_Model(ModelLib.ModelLib):
         model.add(BatchNormalization())
         model.add(Dropout(0.3))
 
-        #model.add(Conv2D(64, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        #model.add(Activation('relu'))
-        #model.add(BatchNormalization())
+        model.add(Conv2D(64, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        model.add(Activation('relu'))
+        model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -61,9 +61,9 @@ class SVgg_Model(ModelLib.ModelLib):
         model.add(BatchNormalization())
         model.add(Dropout(0.4))
 
-        #model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        #model.add(Activation('relu'))
-        #model.add(BatchNormalization())
+        model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        model.add(Activation('relu'))
+        model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
 
