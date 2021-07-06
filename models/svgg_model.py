@@ -23,13 +23,14 @@ from keras.engine.training import Model
 import ModelLib
 
 
-class Vgg_Model(ModelLib.ModelLib):
+class SVgg_Model(ModelLib.ModelLib):
     def build_classifier_model(self, dataset, n_classes=5,
                                activation='elu', dropout_1_rate=0.25,
                                dropout_2_rate=0.5,
                                reg_factor=50e-4, bias_reg_factor=None, batch_norm=False):
         
-        print("=============building vgg model===============") 
+        
+        print("======building Small Vgg======")
         # vgg begin
         num_classes = dataset.n_classes
         # input image dimensions
@@ -49,9 +50,9 @@ class Vgg_Model(ModelLib.ModelLib):
         model.add(BatchNormalization())
         model.add(Dropout(0.3))
 
-        model.add(Conv2D(64, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
+        #model.add(Conv2D(64, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        #model.add(Activation('relu'))
+        #model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -60,9 +61,9 @@ class Vgg_Model(ModelLib.ModelLib):
         model.add(BatchNormalization())
         model.add(Dropout(0.4))
 
-        model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
+        #model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        #model.add(Activation('relu'))
+        #model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -76,26 +77,9 @@ class Vgg_Model(ModelLib.ModelLib):
         model.add(BatchNormalization())
         model.add(Dropout(0.4))
 
-        model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-
-
-        model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.4))
-
-        model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.4))
-
-        model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
+        #model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        #model.add(Activation('relu'))
+        #model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -110,9 +94,26 @@ class Vgg_Model(ModelLib.ModelLib):
         model.add(BatchNormalization())
         model.add(Dropout(0.4))
 
+        #model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        #model.add(Activation('relu'))
+        #model.add(BatchNormalization())
+
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+
+
         model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
         model.add(Activation('relu'))
         model.add(BatchNormalization())
+        model.add(Dropout(0.4))
+
+        model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        model.add(Activation('relu'))
+        model.add(BatchNormalization())
+        model.add(Dropout(0.4))
+
+        #model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        #model.add(Activation('relu'))
+        #model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
         model.add(Dropout(0.5))

@@ -19,6 +19,7 @@ class Cifar100_Model(ModelLib.ModelLib):
                                dropout_2_rate=0.5,
                                reg_factor=50e-4, bias_reg_factor=None, batch_norm=False):
         
+        print("===================building moderate cnn model=========================")
         n_classes = dataset.n_classes
         
         l2_reg = regularizers.l2(reg_factor) #K.variable(K.cast_to_floatx(reg_factor))

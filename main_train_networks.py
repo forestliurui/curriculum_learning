@@ -16,6 +16,7 @@ import datasets.cifar10
 import datasets.cifar100
 import models.cifar100_model
 import models.vgg_model
+import models.svgg_model
 import train_keras_model
 import transfer_learning
 import pickle
@@ -132,6 +133,8 @@ def load_model(args):
         return models.cifar100_model.Cifar100_Model()
     elif args.model == "vgg":
         return models.vgg_model.Vgg_Model()
+    elif args.model == "svgg":
+        return models.svgg_model.SVgg_Model()
 
 def load_order(order_name, dataset):
     classic_networks = ["vgg16", "vgg19", "inception", "xception", "resnet"]

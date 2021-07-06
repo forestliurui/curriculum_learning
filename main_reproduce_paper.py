@@ -246,6 +246,15 @@ if __name__ == "__main__":
         vanilla_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='vgg')
     elif args.experiment == "curriculum_cifar100_vgg":
         curriculum_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='vgg')
+
+    if args.experiment == "vanilla_cifar10_svgg":
+        vanilla_cifar10_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='svgg')
+    elif args.experiment == "curriculum_cifar10_svgg":
+        curriculum_cifar10_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='svgg')
+    elif args.experiment == "vanilla_cifar100_svgg":
+        vanilla_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='svgg')
+    elif args.experiment == "curriculum_cifar100_svgg":
+        curriculum_cifar100_st_vgg(num_repeats, output_path=output_path, data_path=data_path, model='svgg')
     # case 1
 #    curriculum_small_mammals(num_repeats, output_path=output_path)
 #    vanilla_small_mammals(num_repeats, output_path=output_path)
