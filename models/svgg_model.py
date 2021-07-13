@@ -30,7 +30,7 @@ class SVgg_Model(ModelLib.ModelLib):
                                reg_factor=50e-4, bias_reg_factor=None, batch_norm=False):
         
         
-        print("======building Small Vgg======")
+        print("======building Small Vgg (11 layers)======")
         # vgg begin
         num_classes = dataset.n_classes
         # input image dimensions
@@ -50,9 +50,9 @@ class SVgg_Model(ModelLib.ModelLib):
         model.add(BatchNormalization())
         model.add(Dropout(0.3))
 
-        model.add(Conv2D(64, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
+        #model.add(Conv2D(64, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        #model.add(Activation('relu'))
+        #model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -61,9 +61,9 @@ class SVgg_Model(ModelLib.ModelLib):
         model.add(BatchNormalization())
         model.add(Dropout(0.4))
 
-        model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
+        #model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        #model.add(Activation('relu'))
+        #model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
 
